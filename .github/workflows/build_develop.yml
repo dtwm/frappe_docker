@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
-        uses: docker/bake-action@v1.6.0
+        uses: docker/bake-action@v2.2.0
         with:
           files: docker-bake.hcl
           targets: frappe-bench
@@ -55,14 +55,14 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Frappe images
-        uses: docker/bake-action@v1.6.0
+        uses: docker/bake-action@v2.2.0
         with:
           files: docker-bake.hcl
           targets: frappe-develop
           load: true
 
       - name: Build ERPNext images
-        uses: docker/bake-action@v1.6.0
+        uses: docker/bake-action@v2.2.0
         with:
           files: docker-bake.hcl
           targets: erpnext-develop
@@ -73,7 +73,7 @@ jobs:
 
       - name: Push Frappe images
         if: github.repository == 'frappe/frappe_docker' && github.event_name != 'pull_request'
-        uses: docker/bake-action@v1.6.0
+        uses: docker/bake-action@v2.2.0
         with:
           files: docker-bake.hcl
           targets: frappe-develop
@@ -81,7 +81,7 @@ jobs:
 
       - name: Push ERPNext images
         if: github.repository == 'frappe/frappe_docker' && github.event_name != 'pull_request'
-        uses: docker/bake-action@v1.6.0
+        uses: docker/bake-action@v2.2.0
         with:
           files: docker-bake.hcl
           targets: erpnext-develop
